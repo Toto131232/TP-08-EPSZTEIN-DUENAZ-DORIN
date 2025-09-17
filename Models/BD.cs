@@ -8,33 +8,35 @@ public class BD
     {
         return new SqlConnection(_connectionString);
     }
-    public static void ObtenerDificultades()
+    public static List<Dificultad> ObtenerDificultades()
     {
     using (SqlConnection connection = ObtenerConexion())
         {
             var query = "SELECT Nombre FROM Dificultad";
             var dificultad = connection.Query<Dificultad>(query).ToList();
-            
         }
+        return dificultad;
     }
 
-    public static void ObtenerPreguntas(int dificultad, int categoria)
+    public static List<Preguntas> ObtenerPreguntas(int dificultad, int categoria)
     {
         using (SqlConnection connection = ObtenerConexion())
         {
             var query = "SELECT Enunciado FROM Preguntas WHERE DiIdDificultad=@dificultad AND ";
             var pregunta = connection.Query<Preguntas>(query).ToList();
-            
         }
+        return pregunta;
     }
 
-    public static void ObtenerRespuestas(int IdPregunta)
+    public static List<Respuesta> ObtenerRespuestas(int idPregunta)
     {
-using (SqlConnection connection = ObtenerConexion())
+        List<Respuesta> respuestas = new List<Respuesta>();
+        using (SqlConnection connection = ObtenerConexion())
         {
-            var query = "";
-            var Respuesta = connection.Query<Respuestas>(query).ToList();
+            var query = "SELECT * FEOM Respuestas WHERE IdPregunta=@idPregunta";
+            respuestas = connection.Query<Respuestas>(query, new {IdPregunta=idPregunta}).ToList();
             
         }
+        return respuestas;
     }
 }
