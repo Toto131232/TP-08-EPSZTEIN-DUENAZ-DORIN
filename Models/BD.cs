@@ -28,9 +28,9 @@ public class BD
         return pregunta;
     }
 
-    public static List<Respuesta> ObtenerRespuestas(int idPregunta)
+    public static List<Respuestas> ObtenerRespuestas(int idPregunta)
     {
-        List<Respuesta> respuestas = new List<Respuesta>();
+        List<Respuestas> respuestas = new List<Respuestas>();
         using (SqlConnection connection = ObtenerConexion())
         {
             var query = "SELECT * FEOM Respuestas WHERE IdPregunta=@idPregunta";
