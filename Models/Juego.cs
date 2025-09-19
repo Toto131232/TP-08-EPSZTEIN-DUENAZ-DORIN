@@ -12,13 +12,6 @@ public class Juego
     public static List<Preguntas> ListaPregunta{get;set;}=new List<Preguntas>();
     public static List<Respuestas> ListaRespuesta{get;set;}=new List<Respuestas>();
 
-     private static string _connectionString = @"Server=localhost;Database=TP08;Integrated Security=True;TrustServerCertificate=True;";
-    
-    public static SqlConnection ObtenerConexion()
-    {
-        return new SqlConnection(_connectionString);
-    }
-
 private static void InicializarJuego()
     {
         PuntajeActual = 0;
@@ -32,22 +25,14 @@ private static void InicializarJuego()
 
 public List<Categoria> ObtenerCategorias()
 {
-        using (SqlConnection connection = ObtenerConexion())
-        {
-            var query = "SELECT Nombre FROM Categoria";
-            var categoria = connection.Query<Categoria>(query).ToList();
-            return categoria; 
-        }
+        List<Categoria> categoria=BD.ObtenerCategorias();
+        return categoria;
 }
 
-public List<Dificultad> ObtenerDificultades()
+ public static List<Dificultad> ObtenerDificultades()
 {
-    using (SqlConnection connection = ObtenerConexion())
-        {
-            var query = "SELECT Nombre FROM Categoria";
-            var dificultad = connection.Query<Dificultad>(query).ToList();
-            return dificultad; 
-        }
+    List<Dificultad> dificultad=BD.ObtenerDificultades();
+    return dificultad;
 }
 
     public void CargarPartida(string username, int dificultad, int categoria)
@@ -96,5 +81,3 @@ public Preguntas ObtenerProximaPregunta()
         return Correcta;
     }
 }
-
-

@@ -2,7 +2,7 @@ using Microsoft.Data.SqlClient;
 using Dapper;
 public class BD
 {
-    private static string _connectionString = @"Server=localhost;Database=TP08;Integrated Security=True;TrustServerCertificate=True;";
+    private static string _connectionString = @"Server=localhost;Database=TP -08;Integrated Security=True;TrustServerCertificate=True;";
 
    public static SqlConnection ObtenerConexion()
     {
@@ -39,4 +39,14 @@ public class BD
         }
         return respuestas;
     }
+
+   public List<Categoria> ObtenerCategorias()
+{
+        using (SqlConnection connection = ObtenerConexion())
+        {
+            var query = "SELECT Nombre FROM Categoria";
+            var categoria = connection.Query<Categoria>(query).ToList();
+            return categoria; 
+        }
+}
 }
