@@ -1,0 +1,10 @@
+C:\Users\49194388\Desktop\AAA\TP-08-EPSZTEIN-DUENAZ-DORIN\obj\Debug\net8.0\PrimerProyecto.csproj.AssemblyReference.cache
+C:\Users\49194388\Desktop\AAA\TP-08-EPSZTEIN-DUENAZ-DORIN\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\49194388\Desktop\AAA\TP-08-EPSZTEIN-DUENAZ-DORIN\obj\Debug\net8.0\PrimerProyecto.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\49194388\Desktop\AAA\TP-08-EPSZTEIN-DUENAZ-DORIN\obj\Debug\net8.0\PrimerProyecto.AssemblyInfoInputs.cache
+C:\Users\49194388\Desktop\AAA\TP-08-EPSZTEIN-DUENAZ-DORIN\obj\Debug\net8.0\PrimerProyecto.AssemblyInfo.cs
+C:\Users\49194388\Desktop\AAA\TP-08-EPSZTEIN-DUENAZ-DORIN\obj\Debug\net8.0\PrimerProyecto.csproj.CoreCompileInputs.cache
+C:\Users\49194388\Desktop\AAA\TP-08-EPSZTEIN-DUENAZ-DORIN\obj\Debug\net8.0\PrimerProyecto.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\49194388\Desktop\AAA\TP-08-EPSZTEIN-DUENAZ-DORIN\obj\Debug\net8.0\PrimerProyecto.RazorAssemblyInfo.cache
+C:\Users\49194388\Desktop\AAA\TP-08-EPSZTEIN-DUENAZ-DORIN\obj\Debug\net8.0\PrimerProyecto.RazorAssemblyInfo.cs
+C:\Users\49194388\Desktop\AAA\TP-08-EPSZTEIN-DUENAZ-DORIN\obj\Debug\net8.0\PrimerProyecto.sourcelink.json

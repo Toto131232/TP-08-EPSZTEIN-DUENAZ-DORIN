@@ -1,0 +1,34 @@
+@{
+    ViewData["Title"] = "Juego";
+    Preguntas pregunta = ViewBag.Pregunta;
+    Respuestas respuestas = ViewBag.Respuestas;
+}
+<div>
+    <h3>@ViewBag.Username - Puntaje: <span id="puntaje">@ViewBag.Puntaje</span></h3>
+    <h4>Pregunta numero @ViewBag.NroPregunta</h4>
+    <p>@pregunta.Enunciado</p>
+
+    <form method="post" action="@Url.Action("VerificarRespuesta","Juego")" id="formRespuesta">
+        <input type="hidden" name="idPregunta" value="@pregunta.Id" />
+        <div>
+            @foreach(var respuesta in respuestas)
+            {
+                <div>
+                    <label>
+                        <input type="radio" name="idRespuesta" value="@r.Id" required />
+                        @if(!string.IsNullOrEmpty(respuesta.Texto)) 
+                        {
+                             @respuesta.Texto 
+                        }
+                    </label>
+                </div>
+            }
+        </div>
+
+        <button type="submit">Responder</button>
+    </form>
+
+    <div id="timerContainer">
+        Tiempo restante: <span id="timer">15</span> s
+    </div>
+</div>

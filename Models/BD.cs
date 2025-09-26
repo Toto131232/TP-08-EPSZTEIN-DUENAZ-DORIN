@@ -14,8 +14,8 @@ public class BD
         {
             var query = "SELECT Nombre FROM Dificultad";
             var dificultad = connection.Query<Dificultad>(query).ToList();
+            return dificultad;
         }
-        return dificultad;
     }
 
     public static List<Preguntas> ObtenerPreguntas(int dificultad, int categoria)
@@ -24,8 +24,8 @@ public class BD
         {
             var query = "SELECT Enunciado FROM Preguntas WHERE DiIdDificultad=@dificultad AND ";
             var pregunta = connection.Query<Preguntas>(query).ToList();
+            return pregunta;
         }
-        return pregunta;
     }
 
     public static List<Respuestas> ObtenerRespuestas(int idPregunta)
@@ -35,12 +35,13 @@ public class BD
         {
             var query = "SELECT * FEOM Respuestas WHERE IdPregunta=@idPregunta";
             respuestas = connection.Query<Respuestas>(query, new {IdPregunta=idPregunta}).ToList();
+             return respuestas;
             
         }
-        return respuestas;
+       
     }
 
-   public List<Categoria> ObtenerCategorias()
+   public static List<Categoria> ObtenerCategorias()
 {
         using (SqlConnection connection = ObtenerConexion())
         {

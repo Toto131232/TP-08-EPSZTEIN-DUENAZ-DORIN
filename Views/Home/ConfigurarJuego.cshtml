@@ -1,0 +1,29 @@
+@model dynamic
+@{
+    ViewData["Title"] = "Configurar Juego";
+    Categoria categorias = ViewBag.Categorias;
+    Dificultad dificultades = ViewBag.Dificultades;
+}
+<form method="get" action="@Url.Action("Comenzar","Juego")" id="formConfig">
+    <label>Username</label>
+    <input required name="username" />
+    <label>Dificultad</label>
+    <select name="dificultad" required>
+        <option value="-1">Todas</option>
+        @foreach(var dificultad in dificultades) 
+        {
+             <option value="@dificultad.Id">@dificultad.Nombre</option> 
+        }
+    </select>
+
+    <label>Categoría</label>
+    <select name="categoria" required>
+        <option value="-1">Todas</option>
+        @foreach(var categoria in categorias) 
+        { 
+            <option value="@categoria.Id">@categoria.Nombre</option> 
+        }
+    </select>
+
+    <button type="submit">Jugar</button>
+</form>

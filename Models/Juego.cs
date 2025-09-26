@@ -60,13 +60,13 @@ public Preguntas ObtenerProximaPregunta()
     }
 }
 
-    public List<Respuestas> ObtenerProximasRespuestas(int idPregunta)
+    public static List<Respuestas> ObtenerProximasRespuestas(int idPregunta)
     {
         ListaRespuesta = BD.ObtenerRespuestas(idPregunta);
         return ListaRespuesta;
     }
 
-    public bool VerificarRespuesta(int idRespuesta)
+    public static bool VerificarRespuesta(int idRespuesta)
     {
         bool Correcta = false;
         foreach (Respuestas respuesta in ListaRespuesta)

@@ -20,33 +20,25 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult Comenzar(string username, int dificultad, int categoria)
     {
-        var juego = new Juego();
-        juego.CargarPartida(username, dificultad, categoria);
-        Juego.GuardarEnSession(HttpContext.Session, juego);
-        return RedirectToAction("Jugar");
+        return View();
     }
     public IActionResult ConfigurarJuego()
     {
-        var juego = Juego.LeerDesdeSession(HttpContext.Session) ?? new Juego();
-        ViewBag.Categorias = juego.ObtenerCategorias();
-        ViewBag.Dificultades = juego.ObtenerDificultades();
+        ViewBag.Categorias = BD.ObtenerCategorias();
+        ViewBag.Dificultades = BD.ObtenerDificultades();
         return View();
     }
     public IActionResult Jugar()
     {
-        var juego = Juego.LeerDesdeSession(HttpContext.Session);
-        if (juego == null || !juego.HayPreguntasDisponibles())
+        Juego juego = Juego.ObtenerProximaPregunta();
+        if (juego == null)
         {
             return View("Fin");
         }
 
-        var pregunta = juego.GetPreguntaActual();
-        ViewBag.Username = juego.Username;
-        ViewBag.Puntaje = juego.GetPuntajeActual();
-        ViewBag.NroPregunta = juego.GetNroPreguntaActual() + 1;
-        ViewBag.Pregunta = pregunta;
-        ViewBag.Respuestas = juego.GetRespuestasActuales() ?? juego.ObtenerProximasRespuestas(pregunta.Id);
-        Juego.GuardarEnSession(HttpContext.Session, juego);
+        ViewBag.respuestas=Juego.ObtenerProximasRespuestas();
+        ViewBag.pregunta=juego;
+
 
         return View("Juego");
     }
@@ -54,19 +46,9 @@ public class HomeController : Controller
      [HttpPost]
     public IActionResult VerificarRespuesta(int idPregunta, int idRespuesta)
     {
-        var juego = Juego.LeerDesdeSession(HttpContext.Session);
-        if (juego == null) return RedirectToAction("ConfigurarJuego");
-
-        bool correcta = juego.VerificarRespuesta(idRespuesta);
-
-        Juego.GuardarEnSession(HttpContext.Session, juego);
-
-        ViewBag.Correcta = correcta;
-     
-        var respuestas = BD.ObtenerRespuestas(idPregunta);
-        var correctaObj = respuestas.FirstOrDefault(r => r.EsCorrecta);
-        ViewBag.RespuestaCorrecta = correctaObj;
-
+        bool EsCorrecta=Juego.VerificarRespuesta(idRespuesta);
+        ViewBag.EsCorrecta=EsCorrecta;
         return View("Respuesta");
+
     }
 }
