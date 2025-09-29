@@ -12,8 +12,8 @@ public class BD
     {
     using (SqlConnection connection = ObtenerConexion())
         {
-            var query = "SELECT Nombre FROM Dificultad";
-            var dificultad = connection.Query<Dificultad>(query).ToList();
+            string query = "SELECT Nombre FROM Dificultad";
+            List<Dificultad> dificultad = connection.Query<Dificultad>(query).ToList();
             return dificultad;
         }
     }
@@ -22,19 +22,18 @@ public class BD
     {
         using (SqlConnection connection = ObtenerConexion())
         {
-            var query = "SELECT Enunciado FROM Preguntas WHERE DiIdDificultad=@dificultad AND ";
-            var pregunta = connection.Query<Preguntas>(query).ToList();
+            string query = "SELECT Enunciado FROM Preguntas WHERE (@dificultad=-1 OR IdDificultad=@IdDificultad) AND (@categoria=-1 OR IdCategoria=@IdCategoria) ";
+            List<Preguntas> pregunta = connection.Query<Preguntas>(query).ToList();
             return pregunta;
         }
     }
 
     public static List<Respuestas> ObtenerRespuestas(int idPregunta)
     {
-        List<Respuestas> respuestas = new List<Respuestas>();
         using (SqlConnection connection = ObtenerConexion())
         {
-            var query = "SELECT * FEOM Respuestas WHERE IdPregunta=@idPregunta";
-            respuestas = connection.Query<Respuestas>(query, new {IdPregunta=idPregunta}).ToList();
+            string query = "SELECT * FEOM Respuestas WHERE IdPregunta=@idPregunta";
+            List<Respuestas> respuestas = connection.Query<Respuestas>(query, new { IdPregunta = idPregunta }).ToList();
              return respuestas;
             
         }
@@ -45,8 +44,8 @@ public class BD
 {
         using (SqlConnection connection = ObtenerConexion())
         {
-            var query = "SELECT Nombre FROM Categoria";
-            var categoria = connection.Query<Categoria>(query).ToList();
+            string query = "SELECT * FROM Categoria";
+            List<Categoria> categoria = connection.Query<Categoria>(query).ToList();
             return categoria; 
         }
 }

@@ -20,7 +20,10 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult Comenzar(string username, int dificultad, int categoria)
     {
-        return View();
+        Juego.CargarPartida(username, dificultad, categoria);
+        HttpContext.Session.SetString("Username", username);
+        
+        return RedirectToAction("Jugar");
     }
     public IActionResult ConfigurarJuego()
     {
@@ -30,15 +33,21 @@ public class HomeController : Controller
     }
     public IActionResult Jugar()
     {
-        Juego juego = Juego.ObtenerProximaPregunta();
-        if (juego == null)
+        Preguntas preguntas = Juego.ObtenerProximaPregunta();
+        
+        if (preguntas == null)
         {
-            return View("Fin");
+            return RedirectToAction("Fin");
         }
-
-        ViewBag.respuestas=Juego.ObtenerProximasRespuestas();
-        ViewBag.pregunta=juego;
-
+        
+        List<Respuestas> respuestas = Juego.ObtenerProximasRespuestas(preguntas.IdPregunta);
+        Juego.ListaRespuesta = respuestas;
+        
+        ViewBag.username = Juego.username;
+        ViewBag.puntajeactual = Juego.PuntajeActual;
+        ViewBag.pregunta = preguntas;
+        ViewBag.respuestas = respuestas;
+        ViewBag.contadornropreguntaactual = Juego.ContadorNroPreguntaActual;
 
         return View("Juego");
     }

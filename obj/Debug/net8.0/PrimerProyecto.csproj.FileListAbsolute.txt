@@ -8,3 +8,12 @@ C:\Users\49194388\Desktop\AAA\TP-08-EPSZTEIN-DUENAZ-DORIN\obj\Debug\net8.0\Prime
 C:\Users\49194388\Desktop\AAA\TP-08-EPSZTEIN-DUENAZ-DORIN\obj\Debug\net8.0\PrimerProyecto.RazorAssemblyInfo.cache
 C:\Users\49194388\Desktop\AAA\TP-08-EPSZTEIN-DUENAZ-DORIN\obj\Debug\net8.0\PrimerProyecto.RazorAssemblyInfo.cs
 C:\Users\49194388\Desktop\AAA\TP-08-EPSZTEIN-DUENAZ-DORIN\obj\Debug\net8.0\PrimerProyecto.sourcelink.json
+D:\Toto Usuario\Escritorio\Nueva carpeta (2)\TP-08-EPSZTEIN-DUENAZ-DORIN\obj\Debug\net8.0\PrimerProyecto.csproj.AssemblyReference.cache
+D:\Toto Usuario\Escritorio\Nueva carpeta (2)\TP-08-EPSZTEIN-DUENAZ-DORIN\obj\Debug\net8.0\PrimerProyecto.GeneratedMSBuildEditorConfig.editorconfig
+D:\Toto Usuario\Escritorio\Nueva carpeta (2)\TP-08-EPSZTEIN-DUENAZ-DORIN\obj\Debug\net8.0\PrimerProyecto.AssemblyInfoInputs.cache
+D:\Toto Usuario\Escritorio\Nueva carpeta (2)\TP-08-EPSZTEIN-DUENAZ-DORIN\obj\Debug\net8.0\PrimerProyecto.AssemblyInfo.cs
+D:\Toto Usuario\Escritorio\Nueva carpeta (2)\TP-08-EPSZTEIN-DUENAZ-DORIN\obj\Debug\net8.0\PrimerProyecto.csproj.CoreCompileInputs.cache
+D:\Toto Usuario\Escritorio\Nueva carpeta (2)\TP-08-EPSZTEIN-DUENAZ-DORIN\obj\Debug\net8.0\PrimerProyecto.MvcApplicationPartsAssemblyInfo.cache
+D:\Toto Usuario\Escritorio\Nueva carpeta (2)\TP-08-EPSZTEIN-DUENAZ-DORIN\obj\Debug\net8.0\PrimerProyecto.RazorAssemblyInfo.cache
+D:\Toto Usuario\Escritorio\Nueva carpeta (2)\TP-08-EPSZTEIN-DUENAZ-DORIN\obj\Debug\net8.0\PrimerProyecto.RazorAssemblyInfo.cs
+D:\Toto Usuario\Escritorio\Nueva carpeta (2)\TP-08-EPSZTEIN-DUENAZ-DORIN\obj\Debug\net8.0\PrimerProyecto.sourcelink.json

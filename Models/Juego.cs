@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Juego
 {
-    public string username{get;set;}
+    public static string username{get;set;}
     public static  int PuntajeActual{get;set;}
     public static int CantidadPreguntasCorrectas{get;set;}
     public static int ContadorNroPreguntaActual{get;set;}
@@ -35,18 +35,20 @@ public List<Categoria> ObtenerCategorias()
     return dificultad;
 }
 
-    public void CargarPartida(string username, int dificultad, int categoria)
+    public static void CargarPartida(string Username, int dificultad, int categoria)
     {
         InicializarJuego();
-        this.username = username;
-        ListaPregunta = BD.ObtenerPreguntas(dificultad, categoria);
-        if(ListaPregunta.Count>0)
-        {
-            PuntajeActual=ListaPregunta[0];
-        }
+        Juego.username = username;
+        PuntajeActual = 0;
+        CantidadPreguntasCorrectas = 0;
+        ContadorNroPreguntaActual = 0;
+        PreguntaActual = null;
+        List<Preguntas> preguntas = BD.ObtenerPreguntas(dificultad, categoria);
+        ListaPregunta = preguntas;
+        ListaRespuesta = null;
 }
 
-public Preguntas ObtenerProximaPregunta()
+public static Preguntas ObtenerProximaPregunta()
 {
     if(ContadorNroPreguntaActual<ListaPregunta.Count&&ListaPregunta!=null)
     {
