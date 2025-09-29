@@ -1,29 +1,67 @@
-@model dynamic
 @{
     ViewData["Title"] = "Configurar Juego";
-    Categoria categorias = ViewBag.Categorias;
-    Dificultad dificultades = ViewBag.Dificultades;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var categorias = ViewBag.Categorias as IEnumerable<dynamic>;
+    var dificultades = ViewBag.Dificultades as IEnumerable<dynamic>;
 }
-<form method="get" action="@Url.Action("Comenzar","Juego")" id="formConfig">
-    <label>Username</label>
-    <input required name="username" />
-    <label>Dificultad</label>
-    <select name="dificultad" required>
-        <option value="-1">Todas</option>
-        @foreach(var dificultad in dificultades) 
-        {
-             <option value="@dificultad.Id">@dificultad.Nombre</option> 
-        }
-    </select>
 
-    <label>Categoría</label>
-    <select name="categoria" required>
-        <option value="-1">Todas</option>
-        @foreach(var categoria in categorias) 
-        { 
-            <option value="@categoria.Id">@categoria.Nombre</option> 
-        }
-    </select>
+<h2>Configurar partida</h2>
 
-    <button type="submit">Jugar</button>
+<form method="get" action="@Url.Action("Comenzar","Home")" id="form-config">
+    <div class="mb-3">
+        <label for="username" class="form-label">Nombre de usuario</label>
+        <input required type="text" id="username" name="username" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Dificultad</label>
+        <select required name="dificultad" id="dificultad" class="form-select">
+            <option value="" disabled selected>Elegí una dificultad</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="-1">Todas</option>
+            @if (dificultades != null) {
+                foreach(var d in dificultades) {
+                    <option value="@d.Id">@d.Nombre</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Categoría</label>
+        <select required name="categoria" id="categoria" class="form-select">
+            <option value="" disabled selected>Elegí una categoría</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="-1">Todas</option>
+            @if (categorias != null) {
+                foreach(var c in categorias) {
+                    <option value="@c.Id">@c.Nombre</option>
+                }
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Jugar</button>
 </form>
+
+@section Scripts {
+<script>
+    (function(){
+        const form = document.getElementById('form-config');
+        form.addEventListener('submit', function(e){
+            const u = document.getElementById('username');
+            u.value = u.value.trim();
+            if(u.value.length === 0){
+                e.preventDefault();
+                alert('Ingrese un nombre de usuario válido.');
+            }
+        });
+    })();
+</script>
+}

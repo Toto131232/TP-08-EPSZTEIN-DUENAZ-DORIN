@@ -2,7 +2,7 @@ using Microsoft.Data.SqlClient;
 using Dapper;
 public class BD
 {
-    private static string _connectionString = @"Server=localhost;Database=TP -08;Integrated Security=True;TrustServerCertificate=True;";
+    private static string _connectionString = @"Server=localhost;Database=TP-08;Integrated Security=True;TrustServerCertificate=True;";
 
    public static SqlConnection ObtenerConexion()
     {
@@ -22,7 +22,8 @@ public class BD
     {
         using (SqlConnection connection = ObtenerConexion())
         {
-            string query = "SELECT Enunciado FROM Preguntas WHERE (@dificultad=-1 OR IdDificultad=@IdDificultad) AND (@categoria=-1 OR IdCategoria=@IdCategoria) ";
+            string query =  @"SELECT * FROM Preguntas WHERE (@dificultad = -1 OR IdDificultad = @dificutad)
+                                   AND (@categorias = -1 OR IdCategoria = @categoria)";
             List<Preguntas> pregunta = connection.Query<Preguntas>(query).ToList();
             return pregunta;
         }
@@ -44,7 +45,7 @@ public class BD
 {
         using (SqlConnection connection = ObtenerConexion())
         {
-            string query = "SELECT * FROM Categoria";
+            string query = "SELECT * FROM Categorias";
             List<Categoria> categoria = connection.Query<Categoria>(query).ToList();
             return categoria; 
         }

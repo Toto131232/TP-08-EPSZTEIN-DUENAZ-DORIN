@@ -1,16 +1,24 @@
 @{
     ViewData["Title"] = "Respuesta";
-    bool Escorrecta = ViewBag.Correcta;
-    Respuestas RespuestaCorrecta = ViewBag.RespuestaCorrecta;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var correcta = ViewBag.Correcta ?? false;
+    var textoCorrecta = ViewBag.RespuestaCorrectaTexto as string;
+    var usuario = ViewBag.Username as string ?? "Jugador";
+    var puntaje = ViewBag.Puntaje ?? 0;
 }
-<div>
-    @if(Escorrecta)
-    {
-        <h1>¡Correcto!</h1>
+
+<div class="text-center">
+    @if (correcta) {
+        <div class="alert alert-success display-6">¡Correcto!</div>
     } else {
-        <h1>Incorrecto</h1>
-        <p>La respuesta correcta era: @(RespuestaCorrecta.Contenido)</p>
+        <div class="alert alert-danger display-6">Incorrecto</div>
+        @if(!string.IsNullOrWhiteSpace(textoCorrecta)){
+            <p class="lead">La respuesta correcta era: <strong>@textoCorrecta</strong></p>
+        }
     }
 
-    <a href="@Url.Action("Jugar","Juego")">Siguiente Pregunta</a>
+    <p><strong>@usuario</strong> — Puntaje actual: <span>@puntaje</span></p>
+
+    <a class="btn btn-primary" href="@Url.Action("Jugar","Home")">Siguiente pregunta</a>
+    <a class="btn btn-secondary" href="@Url.Action("ConfigurarJuego","Home")">Salir</a>
 </div>
