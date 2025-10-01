@@ -22,8 +22,7 @@ public class BD
     {
         using (SqlConnection connection = ObtenerConexion())
         {
-            string query =  @"SELECT * FROM Preguntas WHERE (@dificultad = -1 OR IdDificultad = @dificutad)
-                                   AND (@categorias = -1 OR IdCategoria = @categoria)";
+            string query =  @"SELECT * FROM Preguntas WHERE (@dificultad = -1 OR IdDificultad = @dificutad) AND (@categorias = -1 OR IdCategoria = @categoria)";
             List<Preguntas> pregunta = connection.Query<Preguntas>(query).ToList();
             return pregunta;
         }

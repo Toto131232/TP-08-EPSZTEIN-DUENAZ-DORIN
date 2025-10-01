@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "l8TDXBT+RrCkFY2oVGV3kjxsfSJevsaKLe8D/jQ7t1hlHb3+fDiTSoDdvpLHNKGieo7fhVGpPJOAtnOb1/O1wA==",
+  "dgSpecHash": "ALfydr2kXsIx6dR33KOZgz0RR8AXt9B7uddfenbWpmZG8ZXwzr6pT+0hZ0aCrEyb8XfQRSCzdkOWXenrLGavDw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\49194388\\Desktop\\AADS\\TP-08-EPSZTEIN-DUENAZ-DORIN\\PrimerProyecto.csproj",
+  "projectFilePath": "C:\\Users\\49194388\\Desktop\\GHGIIHHI\\TP-08-EPSZTEIN-DUENAZ-DORIN\\PrimerProyecto.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\49194388\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\49194388\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",
