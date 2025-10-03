@@ -2,64 +2,27 @@
     ViewData["Title"] = "Configurar Juego";
 }
 
-<h2>Configurar partida</h2>
+<form method="get" action="/Home/Comenzar" class="config-form">
+    <label>Nombre de usuario:</label>
+    <input type="text" name="username" required />
 
-<form method="get" action="@Url.Action("Comenzar","Home")" class="mt-4 needs-validation" novalidate>
-    <div class="mb-3">
-        <label class="form-label">Username</label>
-        <input name="username" type="text" class="form-control" required />
-        <div class="invalid-feedback">El username es requerido.</div>
-    </div>
+    <label>Dificultad:</label>
+    <select name="dificultad" required>
+        <option value="-1">Todas</option>
+        @foreach (var d in ViewBag.Dificultades)
+        {
+            <option value="@d.IdDificultad">@d.Nombre</option>
+        }
+    </select>
 
-    <div class="mb-3">
-        <label class="form-label">Dificultad</label>
-        <select name="dificultad" class="form-select" required>
-            <option value="" disabled selected>-- Elija una dificultad --</option>
-            <option value="-1">Todas</option>
-            @foreach (var d in ViewBag.Dificultades)
-            {
-                <option value="@d.Id">@d.Nombre</option>
-            }
-        </select>
-        <div class="invalid-feedback">Seleccione una dificultad.</div>
-    </div>
+    <label>Categoría:</label>
+    <select name="categoria" required>
+        <option value="-1">Todas</option>
+        @foreach (var c in ViewBag.Categorias)
+        {
+            <option value="@c.IdCategoria">@c.Nombre</option>
+        }
+    </select>
 
-    <div class="mb-3">
-        <label class="form-label">Categoría</label>
-        <select name="categoria" class="form-select" required>
-            <option value="" disabled selected>-- Elija una categoría --</option>
-            <option value="-1">Todas</option>
-            @foreach (var c in ViewBag.Categorias)
-            {
-                <option value="@c.Id">@c.Nombre</option>
-            }
-        </select>
-        <div class="invalid-feedback">Seleccione una categoría.</div>
-    </div>
-
-    <button class="btn btn-success" type="submit">Jugar</button>
+    <button type="submit">Jugar</button>
 </form>
-
-
-
-
-
-
-
-@section Scripts {
-<script>
-    (function () {
-        'use strict'
-        var forms = document.querySelectorAll('.needs-validation')
-        Array.prototype.slice.call(forms).forEach(function (form) {
-            form.addEventListener('submit', function (event) {
-                if (!form.checkValidity()) {
-                    event.preventDefault()
-                    event.stopPropagation()
-                }
-                form.classList.add('was-validated')
-            }, false)
-        })
-    })()
-</script>
-}

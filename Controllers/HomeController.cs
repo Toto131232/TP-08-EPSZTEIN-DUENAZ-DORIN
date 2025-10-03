@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using PrimerProyecto.Models;
+using Newtonsoft.Json;
 
 namespace PrimerProyecto.Controllers;
 

@@ -1,83 +1,17 @@
 @{
     ViewData["Title"] = "Juego";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    var usuario = ViewBag.Username as string ?? "Jugador";
-    var puntaje = ViewBag.Puntaje ?? 0;
-    var nro = ViewBag.NroPregunta ?? 0;
-    var total = ViewBag.TotalPreguntas ?? 0;
-    var pregunta = ViewBag.Pregunta;
-    var respuestas = ViewBag.Respuestas as IEnumerable<dynamic>;
 }
 
-<div class="row">
-    <div class="col-md-8 offset-md-2">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <div>
-                <h5>@usuario</h5>
-                <small>Puntaje: <span id="puntajeLabel">@puntaje</span></small>
-            </div>
-            <div class="text-end">
-                <small>Pregunta: @nro @if(total>0){<text>/ @total</text>}</small>
-            </div>
-        </div>
-
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">@((pregunta != null) ? pregunta.Enunciado : "Sin pregunta")</h5>
-                @if (pregunta != null && pregunta.UrlFoto != null && !string.IsNullOrEmpty((string)pregunta.UrlFoto)) {
-                    <div class="text-center mb-2">
-                        <img src="@pregunta.UrlFoto" alt="Foto pregunta" style="max-width:100%; height:auto;" />
-                    </div>
-                }
-                <form method="post" action="@Url.Action("VerificarRespuesta","Home")" id="form-respuesta">
-                    <input type="hidden" name="idPregunta" value="@(pregunta != null ? pregunta.Id : 0)" />
-                    <div class="list-group mb-3" id="respuestasList">
-                        @if (respuestas != null) {
-                            int idx = 0;
-                            foreach(var r in respuestas) {
-                                idx++;
-                                <label class="list-group-item list-group-item-action d-flex align-items-center" for="resp_@r.Id">
-                                    <input required type="radio" name="idRespuesta" id="resp_@r.Id" value="@r.Id" style="margin-right:12px;" />
-                                    <div>
-                                        <div>@(String.IsNullOrEmpty((string)r.Texto) ? "Opción" : r.Texto)</div>
-                                        @if (r.UrlFoto != null && !string.IsNullOrEmpty((string)r.UrlFoto)) {
-                                            <small class="d-block mt-1"><img src="@r.UrlFoto" alt="Foto respuesta" style="max-width:160px; height:auto;" /></small>
-                                        }
-                                    </div>
-                                </label>
-                            }
-                        } else {
-                            <div class="alert alert-warning">No hay respuestas cargadas.</div>
-                        }
-                    </div>
-
-                    <div class="d-flex justify-content-between">
-                        <a class="btn btn-secondary" href="@Url.Action("ConfigurarJuego","Home")">Salir</a>
-                        <button type="submit" class="btn btn-primary" id="btnResponder">Responder</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+<div class="juego">
+    <h2>Jugador: @ViewBag.Username</h2>
+    <p>Puntaje actual: @ViewBag.Puntaje</p>
+    <h3>Pregunta @ViewBag.NroPregunta</h3>
+    <p>@ViewBag.Pregunta.Enunciado</p>
+    <form method="post" action="/Home/VerificarRespuesta">
+        <input type="hidden" name="idPregunta" value="@ViewBag.Pregunta.IdPregunta" />
+        @foreach (var r in ViewBag.Respuestas)
+        {
+            <button type="submit" name="idRespuesta" value="@r.IdRespuesta">@r.Texto</button>
+        }
+    </form>
 </div>
-
-@section Scripts {
-<script>
-    (function(){
-        const form = document.getElementById('form-respuesta');
-        const btn = document.getElementById('btnResponder');
-        form.addEventListener('submit', function(e){
-            const radios = form.querySelectorAll('input[name="idRespuesta"]');
-            let selected = false;
-            radios.forEach(r => { if(r.checked) selected = true; });
-            if(!selected){
-                e.preventDefault();
-                alert('Seleccioná una respuesta antes de enviar.');
-                return;
-            }
-            btn.disabled = true;
-            btn.innerText = 'Enviando...';
-        });
-    })();
-</script>
-}

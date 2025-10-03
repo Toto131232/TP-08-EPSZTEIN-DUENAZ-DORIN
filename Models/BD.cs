@@ -19,14 +19,15 @@ public class BD
     }
 
     public static List<Preguntas> ObtenerPreguntas(int dificultad, int categoria)
+{
+    List<Preguntas> preguntas = new List<Preguntas>();
+    using(SqlConnection connection = new SqlConnection(_connectionString))
     {
-        using (SqlConnection connection = ObtenerConexion())
-        {
-            string query =  @"SELECT * FROM Preguntas WHERE (@dificultad = -1 OR IdDificultad = @dificutad) AND (@categorias = -1 OR IdCategoria = @categoria)";
-            List<Preguntas> pregunta = connection.Query<Preguntas>(query).ToList();
-            return pregunta;
-        }
+        string query = @"SELECT * FROM Preguntas WHERE (@TDificultad = -1 OR IDDificultad = @TDificultad) AND (@TCategoria   = -1 OR IDCategoria  = @TCategoria)";
+        preguntas = connection.Query<Preguntas>(query, new { TDificultad = dificultad, TCategoria = categoria }).ToList();
     }
+    return preguntas;
+}
 
     public static List<Respuestas> ObtenerRespuestas(int idPregunta)
     {
