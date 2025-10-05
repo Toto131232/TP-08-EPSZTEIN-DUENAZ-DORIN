@@ -3,16 +3,11 @@ using Dapper;
 public class BD
 {
     private static string _connectionString = @"Server=localhost;Database=TP-08;Integrated Security=True;TrustServerCertificate=True;";
-
-   public static SqlConnection ObtenerConexion()
-    {
-        return new SqlConnection(_connectionString);
-    }
     public static List<Dificultad> ObtenerDificultades()
     {
-    using (SqlConnection connection = ObtenerConexion())
+    using (SqlConnection connection = new SqlConnection(_connectionString))
         {
-            string query = "SELECT Nombre FROM Dificultad";
+            string query = "SELECT * FROM Dificultad";
             List<Dificultad> dificultad = connection.Query<Dificultad>(query).ToList();
             return dificultad;
         }
@@ -20,20 +15,18 @@ public class BD
 
     public static List<Preguntas> ObtenerPreguntas(int dificultad, int categoria)
 {
-    List<Preguntas> preguntas = new List<Preguntas>();
-    using(SqlConnection connection = new SqlConnection(_connectionString))
+    using (SqlConnection connection = new SqlConnection(_connectionString))
     {
-        string query = @"SELECT * FROM Preguntas WHERE (@TDificultad = -1 OR IDDificultad = @TDificultad) AND (@TCategoria   = -1 OR IDCategoria  = @TCategoria)";
-        preguntas = connection.Query<Preguntas>(query, new { TDificultad = dificultad, TCategoria = categoria }).ToList();
+        string query = @"SELECT * FROM Preguntas WHERE (@pdificultad = -1 OR IdDificultad = @pdificultad) AND (@pcategoria = -1 OR IdCategoria = @pcategoria)";
+        return connection.Query<Preguntas>(query, new { pdificultad = dificultad, pcategoria = categoria }).ToList();
     }
-    return preguntas;
 }
 
     public static List<Respuestas> ObtenerRespuestas(int idPregunta)
     {
-        using (SqlConnection connection = ObtenerConexion())
+        using (SqlConnection connection = new SqlConnection(_connectionString))
         {
-            string query = "SELECT * FEOM Respuestas WHERE IdPregunta=@idPregunta";
+            string query = "SELECT * FROM Respuestas WHERE IdPregunta=@idPregunta";
             List<Respuestas> respuestas = connection.Query<Respuestas>(query, new { IdPregunta = idPregunta }).ToList();
              return respuestas;
             
@@ -43,7 +36,7 @@ public class BD
 
    public static List<Categoria> ObtenerCategorias()
 {
-        using (SqlConnection connection = ObtenerConexion())
+        using (SqlConnection connection = new SqlConnection(_connectionString))
         {
             string query = "SELECT * FROM Categorias";
             List<Categoria> categoria = connection.Query<Categoria>(query).ToList();

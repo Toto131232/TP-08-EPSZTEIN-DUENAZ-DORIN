@@ -1,14 +1,19 @@
 @{
     ViewData["Title"] = "Fin del Juego";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    var usuario = ViewBag.Username as string ?? "Jugador";
-    var puntaje = ViewBag.PuntajeFinal ?? ViewBag.Puntaje ?? 0;
 }
+<header>
+    <nav class="navbar">
+    <div class="nav-logo">PreguntadORT</div>
+    <div class="nav-links">
+        <a href="@Url.Action("ConfigurarJuego","Home")" class="nav-btn">Jugar</a>
+    </div>
+</nav>
+</header>
 
 <div class="text-center">
     <h1>¡Fin del juego!</h1>
-    <h3>@usuario</h3>
-    <p class="lead">Puntaje final: <strong>@puntaje</strong></p>
-
+    <h3>@ViewBag.usuario</h3>
+    <p class="lead">Puntaje final: <strong>@ViewBag.PuntajeFinal / @ViewBag.PreguntasTotales</strong></p>
+    <p class=lead>Porcentaje de acierto: <strong>@ViewBag.Porcentaje %</strong></p>
     <a class="btn btn-success" href="@Url.Action("ConfigurarJuego","Home")">Volver a jugar</a>
 </div>
