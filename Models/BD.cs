@@ -2,7 +2,7 @@ using Microsoft.Data.SqlClient;
 using Dapper;
 public class BD
 {
-    private static string _connectionString = @"Server=localhost;Database=TP-08;Integrated Security=True;TrustServerCertificate=True;";
+    private static string _connectionString = @"Server=DESKTOP-INA4G9O\SQLEXPRESS;Database=TP-08;Integrated Security=True;TrustServerCertificate=True;";
     public static List<Dificultad> ObtenerDificultades()
     {
     using (SqlConnection connection = new SqlConnection(_connectionString))

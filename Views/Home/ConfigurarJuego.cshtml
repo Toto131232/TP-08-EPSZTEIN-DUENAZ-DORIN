@@ -1,7 +1,17 @@
 @{
     ViewData["Title"] = "Configurar Juego";
 }
+<header>
+    <nav class="navbar">
+    <div class="nav-logo"><img src="~/img/Logo.png" alt="Logo" />
+</div>
 
+    <div class="Titulo"><h1 class="mt-3"></h1></div>
+    <div class="nav-links">
+        <a href="@Url.Action("ConfigurarJuego","Home")" class="nav-btn">Jugar</a>
+    </div>
+</nav>
+</header>
 <form method="get" action="/Home/Comenzar" class="config-form">
     <label>Nombre de usuario:</label>
     <input type="text" name="username" required />
